@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<title>Nikola Aleksic | FBI Terminal</title>
+	<link rel="stylesheet" href="styles/main.css?v1.1">
+
+</head>
+
+<body>
+	<div class="site-login">
+		<img src="images/fbi-seal.png" alt="The seal for the FBI">
+		<h1>F.B.I Login</h1>
+		<form>
+			<label>
+				<input id="username" type="text" placeholder="Username">
+			</label>
+
+			<label>
+				<input id="password" type="password" placeholder="Password">
+			</label>
+
+			<input id="btn-submit" type="submit" value="Submit">
+		</form>
+		<p id="error-msg"></p>
+	</div>
+	<div class="site-warning">
+		<h2>F.B.I TERMINAL</h2>
+		<div class="is-flex">
+			<img src="images/caution.png" alt="A caution symbol">
+			<p>This is a secured and monitered Federal Government system. Unauthorized access is strictly prohibited. All activity is fully monitered. Individuals who attempt to gain unauthorized access or attempt any modification of information on this system is subject to criminal prosecution. All persons who are hereby notified that use of this system constitutes concent to monitoring and auditing.</p>
+			<img src="images/caution.png" alt="A caution symbol">
+		</div>
+	</div>
+	<div class="site-success">
+		<span id="closer">X</span>
+		<h2 id="lang-title">Hello Agent Smith</h2>
+		<p id="language-selector">Please select your native language</p>
+		<img id="american-eng" src="images/usa-flag.png" alt="The flag of the U.S.A">
+		<img id="spanish" src="images/mexico-flag.webp" alt="The flag of Mexico">	
+	</div>
+</body>
+
+<script>
+
+// Defining the variables
+
+// login variables
+const loginInfo = ["client", "secret"];
+const submitBtn = document.getElementById("btn-submit");
+const userNameBtn = document.getElementById("username");
+const passWordBtn = document.getElementById("password");
+const errorMsg = document.getElementById("error-msg");
+
+var attempts = 3;
+
+// success variables
+const loginSuccess = document.querySelector(".site-success");
+const langSelector = document.getElementById("language-selector");
+const langTitle = document.getElementById("lang-title");
+const langAmerica = document.getElementById("american-eng");
+const langMexico = document.getElementById("spanish");
+
+var lang = undefined;
+
+// LOGIN PROCESS----------------------------------------------------------------------------
+
+submitBtn.addEventListener("click", function(e) {
+	// Updating login variables with new info
+	let userName = document.getElementById("username").value;
+	let passWord = document.getElementById("password").value; 
+	// Preventing button by default
+	e.preventDefault();
+	// Resetting styles
+	if (attempts>0) {
+		userNameBtn.style.border = "rgb(255, 230, 0) 2px solid";
+		passWordBtn.style.border = "rgb(255, 230, 0) 2px solid";
+		errorMsg.style.color = "red";
+	};
+
+
+	// if success - else if wrong username - else if wrong password - else wrong username and password
+	if (userName == loginInfo[0] && passWord == loginInfo[1] && attempts>0) {
+		errorMsg.innerHTML = "Login Successful,<br>Welcome Agent Smith";
+		errorMsg.style.color = "rgb(255, 230, 0)"
+		// attempts reset
+		attempts=4;
+		// open success page
+		loginSuccess.style.display = "block";
+	} else if (userName != loginInfo[0] && passWord == loginInfo[1] && attempts>0) {
+		errorMsg.innerHTML = "ERROR: Incorrect username<br>"+(attempts-1)+" attempts remaining";
+		userNameBtn.style.border = "red solid 2px";
+	} else if (userName == loginInfo[0] && passWord != loginInfo[1] && attempts>0) {
+		errorMsg.innerHTML = "ERROR: Incorrect password<br>"+(attempts-1)+" attempts remaining";
+		passWordBtn.style.border = "red solid 2px";
+	} else if (attempts>0) {
+		errorMsg.innerHTML = "ERROR: Incorrect username and password<br>"+(attempts-1)+" attempts remaining";
+		userNameBtn.style.border = "red solid 2px";
+		passWordBtn.style.border = "red solid 2px";
+	};
+	if (attempts==1) {
+		// System lockdown
+		errorMsg.innerHTML = "ERROR: Security risk detected, session has been archived for review<br>"+(attempts-1)+" attempts remaining";
+		submitBtn.style.border = "red solid 2px";
+		submitBtn.style.color = "red";
+		userNameBtn.style.border = "red solid 2px";
+		passWordBtn.style.border = "red solid 2px";
+		document.querySelector('body').style.backgroundImage = "url(images/fbi-bg-red.jpg)"
+		userNameBtn.disabled=true;
+		passWordBtn.disabled=true;
+	}
+	// Counting the attempts
+	attempts--;
+});
+
+// LANGUAGE PROCESS-----------------------------------------------------------------------------
+
+// Closing the success page
+document.getElementById("closer").addEventListener("click", function() {
+	loginSuccess.style.display = "none";
+})
+
+// American Flag
+langAmerica.addEventListener("click", function() {
+	let lang = "english-US";
+	langSelector.innerHTML = "Welcome back to the F.B.I database.";
+	langTitle.innerHTML = "Hello Agent Smith";
+	langAmerica.style.border = "rgb(255, 230, 0) solid 8px";
+	langMexico.style.border = "#fff solid 8px";
+	// Changing the warning
+	document.querySelector(".site-warning div:nth-child(2)").innerHTML = "This is a secured and monitered Federal Government system. Unauthorized access is strictly prohibited. All activity is fully monitered. Individuals who attempt to gain unauthorized access or attempt any modification of information on this system is subject to criminal prosecution. All persons who are hereby notified that use of this system constitutes concent to monitoring and auditing.";
+	document.querySelector(".site-warning h2").innerHTML = "F.B.I TERMINAL";
+	console.log(lang)
+});
+
+// Mexican Flag
+langMexico.addEventListener("click", function() {
+	let lang = "spanish";
+	langSelector.innerHTML = "Bienvenido de nuevo a la base de datos del F.B.I.";
+	langTitle.innerHTML = "Hola Agente Smith";
+	langMexico.style.border = "rgb(255, 230, 0) solid 8px";
+	langAmerica.style.border = "#fff solid 8px";
+	// Changing the warning
+	document.querySelector(".site-warning div:nth-child(2)").innerHTML = "Este es un sistema del Gobierno Federal seguro y monitoreado. El acceso no autorizado está estrictamente prohibido. Toda la actividad está completamente monitoreada. Las personas que intenten obtener acceso no autorizado o intenten modificar la información de este sistema estarán sujetas a acciones penales. Todas las personas a las que se les notifica que el uso de este sistema constituye un consentimiento para el monitoreo y la auditoría.";
+	document.querySelector(".site-warning h2").innerHTML = "TERMINAL DEL F.B.I.";
+	console.log(lang)
+});
+
+</script>
+
+</html>

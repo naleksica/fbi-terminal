@@ -1,0 +1,223 @@
+/* GLOBAL------------------------ */
+html {
+	font-size: 10px;
+}
+
+body {
+	text-align: center;
+	height: 100vh;
+	max-width: 100vw;
+	background-image: url(../images/fbi-bg.jpg);
+	background-size: cover;
+	background-position: center;
+	overflow: hidden;
+	color: white;
+	margin: 0;
+	font-family: 'Fira Sans', sans-serif;
+}
+
+/* HELPERS------------------------- */
+
+.is-flex {
+	display: flex;
+}
+
+/* SITE LOGIN----------------------- */
+
+.site-login {
+	background: rgba(72, 77, 104, 0.75);
+	padding: 10rem 0 3rem 0;
+	font-size: 2rem;
+	margin-top: 5vh;
+}
+
+.site-login input {
+	background: black;
+	color: white;
+	border: rgb(255, 230, 0) 2px solid;
+	padding: 1rem 0;
+	margin-left: 1rem;
+}
+
+.site-login .btn-submit,
+input[type="text"],
+input[type="password"] {
+	color: #fff;
+	padding-left: 10px;
+}
+
+.site-login input[type="submit"] {
+	padding: 1rem;
+	color: rgb(255, 230, 0);
+}
+
+.site-login #error-msg {
+    color: red;
+    font-size: 1.5rem;
+}
+
+@media(max-width: 1050px) {
+
+	.site-login {
+		padding: 1.5rem 0;
+		font-size: 1.5rem;
+	}
+
+	.site-login form {
+		display: flex;
+		flex-direction: column;
+		/* justify-content: center; */
+		align-items: center;
+	}
+
+	.site-login label {
+		margin-top: .5rem;
+	}
+
+	.site-login #btn-submit {
+		margin-top: 2rem;
+		width: 80vw;
+	}
+
+	.site-login img {
+		max-width: 18rem;
+	}
+}
+
+/* SITE WARNING------------------------- */
+
+.site-warning {
+	font-size: 2rem;
+	max-width: 80vw;
+	margin: 0 auto;
+	animation: blink 3s linear infinite;
+}
+
+.site-warning img {
+	height: 8rem;
+	width: auto;
+}
+
+.site-warning .is-flex {
+	align-items: center;
+}
+
+.site-warning h2 {
+	font-size: 5rem;
+	margin: 4rem 0 0 0;
+}
+
+@keyframes blink {
+	0% {
+		color: #fff;
+	}
+	49% {
+		color: #fff;
+	}
+	50% {
+		color: rgb(255, 225, 0);
+	}
+	100% {
+		color: rgb(255, 225, 0);
+	}
+}
+
+@media(max-width: 1050px) {
+
+	.site-warning {
+		font-size: 1.1rem;
+		margin-top: 1rem;
+		max-width: 90vw;
+	}
+
+	.site-warning img {
+		height: 6rem;
+		width: auto;
+	}
+
+	.site-warning h2 {
+		display: none;
+	}
+
+	.site-warning img {
+		display: none;
+	}
+
+}
+
+/* SITE SUCCESS------------------------------ */
+
+.site-success {
+    font-size: 3rem;
+    width: 100vw;
+    background: rgb(0, 16, 135);
+    border-top: #fff solid 20px;
+    border-bottom: #fff solid 20px;
+    padding: 5rem 0;
+    position: absolute;
+    top: 60px;
+    display: none;
+}
+
+.site-success h2 {
+    font-size: 8rem;
+    color: rgb(255, 225, 0);
+    border-bottom: rgb(255, 225, 0) solid 4px;
+    display: inline-block;
+}
+
+.site-success img {
+    height: 15rem;
+    width: 30rem;
+    display: block;
+    margin: 0 auto;
+    margin-top: 5rem;
+    border: #fff solid 8px;
+    cursor: pointer;
+}
+
+.site-success img:hover {
+    border: rgb(133, 126, 0) solid 8px;
+}
+
+.site-success span {
+    position: absolute;
+    right: 180px;
+    font-size: 7rem;
+    cursor: pointer;
+}
+
+.site-success span:hover {
+    color: rgb(255, 225, 0);
+}
+
+@media(max-width: 1050px) {
+
+	.site-success {
+		font-size: 1.5rem;
+		border-top: #fff solid 10px;
+		border-bottom: #fff solid 10px;
+		top: 40px;
+	}
+
+	.site-success img {
+		height: 10rem;
+		width: 20rem;
+		margin-top: 3rem;
+		border: #fff solid 6px;
+	}
+
+	.site-success h2 {
+		font-size: 3rem;
+		border-bottom: rgb(255, 225, 0) solid 2px;
+		display: inline-block;
+	}
+
+	.site-success span {
+		right: 30px;
+		top: 10px;
+		font-size: 5rem;
+		cursor: pointer;
+	}
+
+}
